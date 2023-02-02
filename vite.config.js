@@ -10,7 +10,8 @@ export default defineConfig({
     rollupOptions:{
       input:{
         app:'./src/main.jsx'
-      }
+      },
+      base:"https://vite-embed.vercel.app/dist/"
     }
   }
 })
