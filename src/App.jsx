@@ -17,9 +17,7 @@ function App() {
   return (
     <div className="App">
       <div className="">
-        <button onClick={() => setShowModal(true)}>
-          Show modal using a portal
-        </button>
+        <button onClick={alert("hi")}>Show modal using a portal</button>
         {showModal &&
           createPortal(
             <ModalContent onClose={() => setShowModal(false)} />,
