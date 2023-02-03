@@ -25,6 +25,13 @@ function App() {
             <ModalContent onClose={() => setShowModal(false)} />,
             document.body
           )}
+
+        {showModal && (
+          <div style={{ position: "absolute", top: 0 }}>
+            this is a modal
+            <div onClick={() => setShowModal(false)}>CLOSE </div>
+          </div>
+        )}
       </div>
     </div>
   );
