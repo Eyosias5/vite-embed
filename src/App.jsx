@@ -30,6 +30,14 @@ function App() {
             <div onClick={() => setShowModal(false)}>CLOSE </div>
           </div>
         )}
+
+        {showModal &&
+          createPortal(
+            <div style={{ position: "absolute", right: 0 }}>
+              <h1>Portal component</h1>
+            </div>,
+            document.body
+          )}
       </div>
     </div>
   );
