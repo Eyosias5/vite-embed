@@ -13,15 +13,19 @@ export function ModalContent({ onClose }) {
 }
 
 function App() {
+  const shopifyEmbed = document.getElementsByTagName("body");
+
   const [showModal, setShowModal] = useState(false);
   return (
     <div className="App">
       <div className="">
-        <button onClick={() => alert("hi")}>Show modal using a portal</button>
+        <button onClick={() => setShowModal(true)}>
+          Show modal using a portal
+        </button>
         {showModal &&
           createPortal(
             <ModalContent onClose={() => setShowModal(false)} />,
-            document.body
+            shopifyEmbed
           )}
 
         {showModal && (
