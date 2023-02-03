@@ -33,8 +33,26 @@ function App() {
 
         {showModal &&
           createPortal(
-            <div style={{ position: "absolute", right: 0 }}>
-              <h1>Portal component</h1>
+            <div
+              style={{
+                position: "fixed",
+                left: "50%",
+                top: "30%",
+                zIndex: 999999,
+              }}
+            >
+              <div
+                style={{
+                  height: 600,
+                  width: 500,
+                  background: "white",
+                  borderRadius: 6,
+                  position: "relative",
+                  left: "-50%",
+                }}
+              >
+                Portal component
+              </div>
             </div>,
             document.body
           )}
