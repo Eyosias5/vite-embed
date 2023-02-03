@@ -25,7 +25,7 @@ function App() {
         </button>
 
         {showModal && (
-          <div>
+          <div style={{ position: "absolute", right: 0 }}>
             <hi>hi</hi>
             <div onClick={() => setShowModal(false)}>CLOSE </div>
           </div>
