@@ -20,13 +20,6 @@ function App() {
       <div className="">
         <button onClick={() => setShowModal(true)}>Join Program</button>
 
-        {showModal && (
-          <div style={{ position: "absolute", right: 0, top: "10%" }}>
-            <hi>hi</hi>
-            <div onClick={() => setShowModal(false)}>CLOSE </div>
-          </div>
-        )}
-
         {showModal &&
           createPortal(
             <div
@@ -39,7 +32,7 @@ function App() {
             >
               <div
                 style={{
-                  height: 600,
+                  height: 330,
                   width: 500,
                   background: "white",
                   borderRadius: 6,
@@ -47,8 +40,58 @@ function App() {
                   left: "-50%",
                 }}
               >
-                <p>Join Program</p>
-                <input>Email</input>
+                <p
+                  style={{
+                    textAlign: "center",
+                    text: "black",
+                    color: "black",
+
+                    paddingTop: "55px",
+                    fontSize: "28px",
+                  }}
+                >
+                  Join Program
+                </p>
+                <label
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    color: "black",
+                    width: "41%",
+                    margin: "0 26px",
+                  }}
+                >
+                  Name:
+                  <input style={{ height: 31 }} type="text" name="name" />
+                </label>
+                <label
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    color: "black",
+                    width: "41%",
+                    margin: "0 26px",
+                  }}
+                >
+                  Email:
+                  <input style={{ height: 31 }} type="text" name="email" />
+                </label>
+                <div
+                  style={{
+                    color: "black",
+                    textAlign: "center",
+                    marginTop: 12,
+                    background: "yellow",
+                    width: "fit-content",
+                    padding: "8px 80px",
+                    borderRadius: 8,
+                    cursor: "pointer",
+                    margin: "30px auto",
+                  }}
+                  onClick={() => setShowModal(false)}
+                >
+                  Join{" "}
+                </div>
               </div>
             </div>,
             document.body
