@@ -13,16 +13,12 @@ export function ModalContent({ onClose }) {
 }
 
 function App() {
-  const shopifyEmbed = document.getElementsByTagName("body");
-
   const [showModal, setShowModal] = useState(false);
 
   return (
     <div className="App">
       <div className="">
-        <button onClick={() => setShowModal(true)}>
-          Show modal using a portal
-        </button>
+        <button onClick={() => setShowModal(true)}>Join Program</button>
 
         {showModal && (
           <div style={{ position: "absolute", right: 0, top: "10%" }}>
@@ -51,7 +47,8 @@ function App() {
                   left: "-50%",
                 }}
               >
-                Portal component
+                <p>Join Program</p>
+                <input>Email</input>
               </div>
             </div>,
             document.body
