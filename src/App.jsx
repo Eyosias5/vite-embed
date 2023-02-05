@@ -17,85 +17,9 @@ function App() {
 
   return (
     <div className="App">
-      <div className="">
-        <button onClick={() => setShowModal(true)}>Join Program</button>
-
-        {showModal &&
-          createPortal(
-            <div
-              style={{
-                position: "fixed",
-                left: "50%",
-                top: "30%",
-                zIndex: 999999,
-              }}
-            >
-              <div
-                style={{
-                  height: 330,
-                  width: 500,
-                  background: "white",
-                  borderRadius: 6,
-                  position: "relative",
-                  left: "-50%",
-                }}
-              >
-                <p
-                  style={{
-                    textAlign: "center",
-                    text: "black",
-                    color: "black",
-
-                    paddingTop: "55px",
-                    fontSize: "28px",
-                  }}
-                >
-                  Join Program
-                </p>
-                <label
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    color: "black",
-                    width: "41%",
-                    margin: "0 26px",
-                  }}
-                >
-                  Name:
-                  <input style={{ height: 31 }} type="text" name="name" />
-                </label>
-                <label
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    color: "black",
-                    width: "41%",
-                    margin: "0 26px",
-                  }}
-                >
-                  Email:
-                  <input style={{ height: 31 }} type="text" name="email" />
-                </label>
-                <div
-                  style={{
-                    color: "black",
-                    textAlign: "center",
-                    marginTop: 12,
-                    background: "yellow",
-                    width: "fit-content",
-                    padding: "8px 80px",
-                    borderRadius: 8,
-                    cursor: "pointer",
-                    margin: "30px auto",
-                  }}
-                  onClick={() => setShowModal(false)}
-                >
-                  Join{" "}
-                </div>
-              </div>
-            </div>,
-            document.body
-          )}
+      <div style={{ color: "black" }}>
+        <h3>Thank you for Purchasing Product X</h3>
+        <p>Your Discount code: HD12G3</p>
       </div>
     </div>
   );
