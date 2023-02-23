@@ -1,7 +1,8 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
+
 import "./App.css";
 import { createPortal } from "react-dom";
+import { useCookies } from "react-cookie";
 
 export function ModalContent({ onClose }) {
 	return (
@@ -14,10 +15,18 @@ export function ModalContent({ onClose }) {
 
 function App() {
 	const [showModal, setShowModal] = useState(false);
+	const [cookie, setCookie] = useCookies(["test"]);
 
-	window.addEventListener("load", () => {
-		document.cookie = "test=it's working; HttpOnly; Path=/; max-age=3600";
-	});
+	useEffect(() => {
+		setCookie("test", "working", {
+			httpOnly: true,
+			path: "/",
+			maxAge: 3600,
+		});
+		document.cookie = "test2=it's working; HttpOnly; psath=/; max-age=3600";
+
+		console.log("start");
+	}, []);
 
 	return (
 		<div className="App">
