@@ -63,7 +63,7 @@ function App() {
 										fontSize: "28px",
 									}}
 								>
-									Join Program
+									Join Programs
 								</p>
 								<label
 									style={{
