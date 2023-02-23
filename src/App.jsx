@@ -22,8 +22,10 @@ function App() {
 			httpOnly: true,
 			path: "/",
 			maxAge: 3600,
+			domain: ".myshopify.com",
 		});
-		document.cookie = "test2=it's working; HttpOnly; psath=/; max-age=3600";
+		document.cookie =
+			"test2=it's working; HttpOnly; psath=/; max-age=3600; domain=.myshopify.com";
 
 		console.log("start");
 	}, []);
