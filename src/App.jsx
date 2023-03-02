@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import { createPortal } from "react-dom";
 import { useCookies } from "react-cookie";
+import jwt from "jsonwebtoken";
+import axios from "axios";
 
 export function ModalContent({ onClose }) {
 	return (
@@ -16,18 +18,31 @@ export function ModalContent({ onClose }) {
 function App() {
 	const [showModal, setShowModal] = useState(false);
 	const [cookie, setCookie] = useCookies(["test"]);
+	const [currentPath, setCurrentPath] = useState("");
 
 	useEffect(() => {
-		setCookie("test", "working", {
-			httpOnly: true,
-			path: "/",
-			maxAge: 3600,
-			domain: ".myshopify.com",
-		});
-		document.cookie =
-			"test2=it's working; HttpOnly; psath=/; max-age=3600; domain=.myshopify.com";
-
 		console.log("start");
+
+		setCurrentPath(window.location.pathname);
+
+		if (currentPath) {
+			const encryptedPath = jwt.sign(currentPath, "secret");
+
+			setCookie("affiliate", encryptedPath, {
+				path: "/",
+				maxAge: 3600,
+			});
+
+			const { data } = axios({
+				method: "POST",
+				url: process.env.BACKEND_URL,
+				data: {
+					affiliate: currentPath,
+				},
+			}).catch((err) => {
+				console.log(err);
+			});
+		}
 	}, []);
 
 	return (
