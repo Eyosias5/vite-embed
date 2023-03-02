@@ -24,6 +24,8 @@ function App() {
 
 		setCurrentPath(window.location.href);
 
+		console.log(window.location.href);
+
 		const fn = async () => {
 			const { data } = await axios({
 				method: "POST",
@@ -38,14 +40,12 @@ function App() {
 			console.log(data);
 		};
 
-		if (currentPath) {
-			console.log("starting...");
-			const encryptedPath = currentPath;
+		console.log("starting...");
+		const encryptedPath = currentPath;
 
-			document.cookie = `affiliate=${encryptedPath};path=/`;
+		document.cookie = `affiliate=${encryptedPath || "true"};path=/`;
 
-			fn();
-		}
+		fn();
 	}, []);
 
 	return (
