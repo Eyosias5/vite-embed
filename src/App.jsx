@@ -25,15 +25,8 @@ function App() {
 
 		setCurrentPath(window.location.pathname);
 
-		if (currentPath) {
-			const encryptedPath = jwt.sign(currentPath, "secret");
-
-			setCookie("affiliate", encryptedPath, {
-				path: "/",
-				maxAge: 3600,
-			});
-
-			const { data } = axios({
+		const fn = async () => {
+			const { data } = await axios({
 				method: "POST",
 				url: process.env.BACKEND_URL,
 				data: {
@@ -42,6 +35,19 @@ function App() {
 			}).catch((err) => {
 				console.log(err);
 			});
+
+			console.log(data);
+		};
+
+		if (currentPath) {
+			const encryptedPath = jwt.sign(currentPath, "secret");
+
+			setCookie("affiliate", encryptedPath, {
+				path: "/",
+				maxAge: 3600,
+			});
+
+			fn();
 		}
 	}, []);
 
