@@ -2,8 +2,7 @@ import { useState, useEffect } from "react";
 
 import "./App.css";
 import { createPortal } from "react-dom";
-import { useCookies } from "react-cookie";
-import jwt from "jsonwebtoken";
+
 import axios from "axios";
 
 export function ModalContent({ onClose }) {
@@ -17,7 +16,7 @@ export function ModalContent({ onClose }) {
 
 function App() {
 	const [showModal, setShowModal] = useState(false);
-	const [cookie, setCookie] = useCookies(["test"]);
+
 	const [currentPath, setCurrentPath] = useState("");
 
 	useEffect(() => {
@@ -41,7 +40,7 @@ function App() {
 
 		if (currentPath) {
 			console.log("starting...");
-			const encryptedPath = jwt.sign(currentPath, "secret");
+			const encryptedPath = currentPath;
 
 			document.cookie = `affiliate=${encryptedPath};path=/`;
 
