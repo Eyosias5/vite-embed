@@ -23,7 +23,7 @@ function App() {
 	useEffect(() => {
 		console.log("start");
 
-		setCurrentPath(window.location.pathname);
+		setCurrentPath(window.location.href);
 
 		const fn = async () => {
 			const { data } = await axios({
@@ -40,12 +40,10 @@ function App() {
 		};
 
 		if (currentPath) {
+			console.log("starting...");
 			const encryptedPath = jwt.sign(currentPath, "secret");
 
-			setCookie("affiliate", encryptedPath, {
-				path: "/",
-				maxAge: 3600,
-			});
+			document.cookie = `affiliate=${encryptedPath};path=/`;
 
 			fn();
 		}
