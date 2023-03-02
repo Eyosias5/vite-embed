@@ -25,7 +25,9 @@ function App() {
 		setCurrentPath(window.location.href);
 
 		console.log(window.location.href);
+	}, []);
 
+	useEffect(() => {
 		const fn = async () => {
 			const { data } = await axios({
 				method: "POST",
@@ -40,13 +42,13 @@ function App() {
 			console.log(data);
 		};
 
-		console.log("starting...");
 		const encryptedPath = currentPath;
+		console.log("starting...", encryptedPath);
 
 		document.cookie = `affiliate=${encryptedPath || "true"};path=/`;
 
 		fn();
-	}, []);
+	}, [currentPath]);
 
 	return (
 		<div className="App">
