@@ -17,12 +17,14 @@ export function ModalContent({ onClose }) {
 function App() {
 	const [showModal, setShowModal] = useState(false);
 
-	const [currentPath, setCurrentPath] = useState("");
+	const [affiliateCode, setAffliateCode] = useState("");
 
 	useEffect(() => {
 		console.log("start");
 
-		setCurrentPath(window.location.href);
+		setAffliateCode(
+			new URL(window.location.href).searchParams.get("affiliate")
+		);
 
 		console.log(window.location.href);
 	}, []);
@@ -33,7 +35,7 @@ function App() {
 				method: "POST",
 				url: process.env.BACKEND_URL,
 				data: {
-					affiliate: currentPath,
+					affiliate: affiliateCode,
 				},
 			}).catch((err) => {
 				console.log(err);
@@ -42,13 +44,13 @@ function App() {
 			console.log(data);
 		};
 
-		const encryptedPath = currentPath;
-		console.log("starting...", encryptedPath);
+		const encryptedPath = affiliateCode;
+		console.log("starting...", affiliateCode);
 
-		document.cookie = `affiliate=${encryptedPath || "true"};path=/`;
+		document.cookie = `affiliate=${affiliateCode || "true"};path=/`;
 
 		fn();
-	}, [currentPath]);
+	}, [affiliateCode]);
 
 	return (
 		<div className="App">
