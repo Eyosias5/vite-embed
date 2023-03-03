@@ -33,7 +33,7 @@ function App() {
 		const fn = async () => {
 			const { data } = await axios({
 				method: "POST",
-				url: "https://053b-198-199-66-92.ngrok.io/affiliate",
+				url: "https://302f-196-189-18-129.eu.ngrok.io/affiliate",
 				data: {
 					affiliate: affiliateCode,
 				},
