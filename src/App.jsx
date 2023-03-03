@@ -49,7 +49,9 @@ function App() {
 
 		document.cookie = `affiliate=${affiliateCode || "true"};path=/`;
 
-		fn();
+		if (affiliateCode) {
+			fn();
+		}
 	}, [affiliateCode]);
 
 	return (
