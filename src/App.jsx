@@ -35,7 +35,7 @@ function App() {
 				headers: {
 					"Content-Type": "application/json",
 				},
-				body: JSON.stringify(affiliateCode),
+				body: affiliateCode,
 			})
 				.catch((err) => {
 					console.log(err);
