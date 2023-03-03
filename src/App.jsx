@@ -3,8 +3,6 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import { createPortal } from "react-dom";
 
-import axios from "axios";
-
 export function ModalContent({ onClose }) {
 	return (
 		<div className="modal">
@@ -31,17 +29,20 @@ function App() {
 
 	useEffect(() => {
 		const fn = async () => {
-			const { data } = await axios({
+			console.log(process.env.BACKEND_URL);
+			fetch("https://e31c-196-189-18-129.eu.ngrok.io/affiliate", {
 				method: "POST",
-				url: process.env.BACKEND_URL,
-				data: {
-					affiliate: affiliateCode,
+				headers: {
+					"Content-Type": "application/json",
 				},
-			}).catch((err) => {
-				console.log(err);
-			});
-
-			console.log(data);
+				body: JSON.stringify(affiliateCode),
+			})
+				.catch((err) => {
+					console.log(err);
+				})
+				.then((res) => {
+					console.log(res);
+				});
 		};
 
 		const encryptedPath = affiliateCode;
