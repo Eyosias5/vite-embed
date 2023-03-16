@@ -23,7 +23,7 @@ function App() {
 
 		setAffiliateCookie(
 			"affiliate",
-			new URL(window.location.href).searchParams.get("affiliate").toString(),
+			new URL(window.location.href).searchParams.get("affiliate")?.toString(),
 			{
 				path: "/",
 				maxAge: 60 * 60,
@@ -66,8 +66,7 @@ function App() {
 			// }).catch((err) => {
 			// 	console.log(err);
 			// });
-
-			console.log(data);
+			// console.log(data);
 		};
 
 		console.log("starting...", affiliateCookie.affiliate);
