@@ -19,7 +19,7 @@ function App() {
 	const [affiliateCookie, setAffiliateCookie] = useCookies(["affiliate"]);
 
 	useEffect(() => {
-		console.log("start");
+		console.log("starting.....");
 
 		setAffiliateCookie(
 			"affiliate",
@@ -45,24 +45,26 @@ function App() {
 			});
 		};
 
-		if (window.location.pathname.split("/").at(-1) === "thank_you") {
+		console.log(window.location.pathname);
+
+		if (window.location.pathname.split("/").at(-1).toString() == "thank_you") {
 			const order_id = window.location.pathname.split("/").at(-2);
 			console.log("on Thank you page", order_id, affiliateCookie.affiliate);
-			fn(order_id, affiliateCookie.affiliate);
+			// fn(order_id, affiliateCookie.affiliate);
 		}
 	}, [window.location.pathname]);
 
 	useEffect(() => {
 		const fn = async () => {
-			const { data } = await axios({
-				method: "POST",
-				url: "https://af66-196-190-60-115.eu.ngrok.io/affiliate",
-				data: {
-					affiliate: affiliateCookie.affiliate,
-				},
-			}).catch((err) => {
-				console.log(err);
-			});
+			// const { data } = await axios({
+			// 	method: "POST",
+			// 	url: "https://af66-196-190-60-115.eu.ngrok.io/affiliate",
+			// 	data: {
+			// 		affiliate: affiliateCookie.affiliate,
+			// 	},
+			// }).catch((err) => {
+			// 	console.log(err);
+			// });
 
 			console.log(data);
 		};
