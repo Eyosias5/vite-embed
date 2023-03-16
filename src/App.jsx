@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-
+import { useCookies } from "react-cookie";
 import "./App.css";
 import { createPortal } from "react-dom";
 
@@ -16,26 +16,49 @@ export function ModalContent({ onClose }) {
 
 function App() {
 	const [showModal, setShowModal] = useState(false);
-
-	const [affiliateCode, setAffliateCode] = useState("");
+	const [affiliateCookie, setAffiliateCookie] = useCookies(["affiliate"]);
 
 	useEffect(() => {
 		console.log("start");
 
-		setAffliateCode(
-			new URL(window.location.href).searchParams.get("affiliate")
+		setAffiliateCookie(
+			"affiliate",
+			new URL(window.location.href).searchParams.get("affiliate").toString(),
+			{
+				path: "/",
+				maxAge: 60 * 60,
+			}
 		);
 
 		console.log(window.location.href);
 	}, []);
 
 	useEffect(() => {
+		const fn = async (order_id, affiliate_id) => {
+			await axios({
+				method: "POST",
+				url: "https://af66-196-190-60-115.eu.ngrok.io/affiliate/conversion",
+				data: {
+					order_id,
+					affiliate_id,
+				},
+			});
+		};
+
+		if (window.location.pathname.split("/").at(-1) === "thank_you") {
+			const order_id = window.location.pathname.split("/").at(-2);
+			console.log("on Thank you page", order_id, affiliateCookie.affiliate);
+			fn(order_id, affiliateCookie.affiliate);
+		}
+	}, [window.location.pathname]);
+
+	useEffect(() => {
 		const fn = async () => {
 			const { data } = await axios({
 				method: "POST",
-				url: "https://302f-196-189-18-129.eu.ngrok.io/affiliate",
+				url: "https://af66-196-190-60-115.eu.ngrok.io/affiliate",
 				data: {
-					affiliate: affiliateCode,
+					affiliate: affiliateCookie.affiliate,
 				},
 			}).catch((err) => {
 				console.log(err);
@@ -44,15 +67,12 @@ function App() {
 			console.log(data);
 		};
 
-		const encryptedPath = affiliateCode;
-		console.log("starting...", affiliateCode);
+		console.log("starting...", affiliateCookie.affiliate);
 
-		document.cookie = `affiliate=${affiliateCode || "true"};path=/`;
-
-		if (affiliateCode) {
+		if (affiliateCookie.affiliate) {
 			fn();
 		}
-	}, [affiliateCode]);
+	}, [affiliateCookie.affiliate]);
 
 	return (
 		<div className="App">
