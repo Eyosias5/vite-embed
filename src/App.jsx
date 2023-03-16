@@ -45,9 +45,10 @@ function App() {
 			});
 		};
 
-		console.log(window.location.pathname);
+		console.log(window.location);
+		console.log(window.location?.pathname || "no pathname");
 
-		if (window.location.pathname.split("/").at(-1).toString() == "thank_you") {
+		if (window.location.pathname.split("/").at(-1)?.toString() == "thank_you") {
 			const order_id = window.location.pathname.split("/").at(-2);
 			console.log("on Thank you page", order_id, affiliateCookie.affiliate);
 			// fn(order_id, affiliateCookie.affiliate);
