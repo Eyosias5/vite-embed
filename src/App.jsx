@@ -53,7 +53,7 @@ function App() {
 			console.log("on Thank you page", order_id, affiliateCookie.affiliate);
 			// fn(order_id, affiliateCookie.affiliate);
 		}
-	}, [window.location.pathname]);
+	}, [window.location.pathname.split("/").at(-1)]);
 
 	useEffect(() => {
 		const fn = async () => {
