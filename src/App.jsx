@@ -21,20 +21,23 @@ function App() {
 	useEffect(() => {
 		console.log("starting.....");
 
-		setAffiliateCookie(
-			"affiliate",
-			new URL(window.location.href).searchParams.get("affiliate")?.toString(),
-			{
-				path: "/",
-				maxAge: 60 * 60,
-			}
-		);
+		if (!affiliateCookie.affiliate) {
+			setAffiliateCookie(
+				"affiliate",
+				new URL(window.location.href).searchParams.get("affiliate")?.toString(),
+				{
+					path: "/",
+					maxAge: 60 * 60,
+				}
+			);
+		}
 
 		console.log(window.location.href);
 	}, []);
 
 	useEffect(() => {
 		const fn = async (order_id, affiliate_id) => {
+			console.log(order_id, affiliate_id);
 			await axios({
 				method: "POST",
 				url: "https://5b03-196-191-60-27.eu.ngrok.io/affiliate/conversion",
