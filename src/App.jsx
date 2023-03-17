@@ -21,7 +21,10 @@ function App() {
 	useEffect(() => {
 		console.log("starting.....");
 
-		if (!affiliateCookie.affiliate) {
+		if (
+			!affiliateCookie.affiliate ||
+			affiliateCookie.affiliate == "undefined"
+		) {
 			setAffiliateCookie(
 				"affiliate",
 				new URL(window.location.href).searchParams.get("affiliate")?.toString(),
