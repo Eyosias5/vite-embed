@@ -37,7 +37,7 @@ function App() {
 		const fn = async (order_id, affiliate_id) => {
 			await axios({
 				method: "POST",
-				url: "https://af66-196-190-60-115.eu.ngrok.io/affiliate/conversion",
+				url: "https://5b03-196-191-60-27.eu.ngrok.io/affiliate/conversion",
 				data: {
 					order_id,
 					affiliate_id,
@@ -51,7 +51,7 @@ function App() {
 		if (window.location.pathname.split("/").at(-1)?.toString() == "thank_you") {
 			const order_id = window.location.pathname.split("/").at(-2);
 			console.log("on Thank you page", order_id, affiliateCookie.affiliate);
-			// fn(order_id, affiliateCookie.affiliate);
+			fn(order_id, affiliateCookie.affiliate || "");
 		}
 	});
 
