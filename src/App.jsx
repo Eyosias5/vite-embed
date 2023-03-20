@@ -43,7 +43,7 @@ function App() {
 			console.log(order_id, affiliate_id);
 			await axios({
 				method: "POST",
-				url: "https://5b03-196-191-60-27.eu.ngrok.io/affiliate/conversion",
+				url: "https://970b-196-190-62-31.eu.ngrok.io/affiliate/conversion",
 				data: {
 					order_id,
 					affiliate_id,
